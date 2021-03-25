@@ -10,9 +10,9 @@ using System.Windows;
 
 namespace WPF_demo_roslyn_Core.Entities
 {
-    public static class RoslynCompiler
+    public static class Roslyn
     {
-        public static object CompileCode(Window window, string formulaCode, out bool isError)
+        public static object CompileAndExecuteCode(Window window, string formulaCode, out bool isError)
         {
             isError = false;
             try
