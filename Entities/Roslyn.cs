@@ -18,8 +18,8 @@ namespace WPF_demo_roslyn_Core.Entities
             try
             {
                 Microsoft.CodeAnalysis.Scripting.Script<object> script = CSharpScript.Create(formulaCode, ScriptOptions.Default.
-                    WithImports("System", "System.Collections", "OfficeOpenXml", "System.IO").
-                    WithReferences(typeof(ExcelPackage).Assembly));
+                    WithImports("System", "System.Collections", "System.IO","System.Data", "System.Collections.Generic", "WPF_demo_roslyn_Core.Entities").
+                    WithReferences(typeof(System.Data.DataTable).Assembly,typeof(DataTableAndDynamicUtilities).Assembly));
 
                 Microsoft.CodeAnalysis.Scripting.ScriptState<object> result = script.RunAsync().Result;
                 return result.ReturnValue;
@@ -31,6 +31,17 @@ namespace WPF_demo_roslyn_Core.Entities
                 MessageBox.Show(window, errors,string.Empty, MessageBoxButton.OK);
                 return null;
             }
+
+            #region CodeToPaste
+            /*var dt = new DataTable();
+            dt.Columns.Add("ID", typeof(int));
+            dt.Columns.Add("Name", typeof(string));
+            dt.Rows.Add(1, "x");
+            dt.Rows.Add(2, "y");
+
+            List<dynamic> dynamicDt = dt.ToDynamic();
+            var newDt = dynamicDt.ToDataTable();*/
+            #endregion
         }
     }
 }
